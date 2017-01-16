@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eniro Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Test EniroSearch</h1>
+<form th:attr="action=@{/search}" method="post">
+    <section style="display: inline-block;">
+        <div style="display: inline-block;">
+            <div style="float:left;margin-right:20px;">
+                <label style="display: block" for="filterString">Filter</label>
+                <input style="display: block" id="filterString" type="text" name="filterString"/>
+            </div>
+            <div style="float:left;">
+                <label style="display: block" for="searchString">Search</label>
+                <input style="display: block" id="searchString" type="text" name="searchString"/>
+            </div>
+        </div>
+        <br style="clear:both;"/>
+        <input type="submit" value="Search" style="float: right"/>
+
+    </section>
+</form>
+<span th:if="${searchstring} != null"><h2>Result for: <i><span th:text="${searchstring}"></span></i><span
+        th:if="${filterstring} != null"> with filter <i><span th:text="${filterstring}"></span></i></span></h2></span>
+<ul th:if="${searchresult} != null">
+    <li th:each="result : ${searchresult}">
+        <a th:href="@{${result.value}}" th:text="${result.key}"></a>
+    </li>
+</ul>
+</body>
+</html>
