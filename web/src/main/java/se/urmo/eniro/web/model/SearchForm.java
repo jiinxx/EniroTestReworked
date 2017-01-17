@@ -1,4 +1,4 @@
-package se.urmo.eniro.model;
+package se.urmo.eniro.web.model;
 
 import javax.validation.constraints.NotNull;
 
