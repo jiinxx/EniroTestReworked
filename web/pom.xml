@@ -9,6 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <!-- Spring Boot Java version -->
+        <java.version>1.8</java.version>
+    </properties>
+
     <artifactId>web</artifactId>
 
     <dependencies>

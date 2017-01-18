@@ -14,3 +14,5 @@
 # Maven
 log/
 target/
+/application/src/main/java/se/urmo/eniro/app/EniroAPIExample.java
+/application/src/main/resources/application.properties
