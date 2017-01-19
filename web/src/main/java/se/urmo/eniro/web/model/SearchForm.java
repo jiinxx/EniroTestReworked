@@ -1,10 +1,13 @@
 package se.urmo.eniro.web.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.validation.constraints.NotNull;
 
 public class SearchForm {
     public final static String ATTRIBUTE_NAME = "searchForm";
     @NotNull
+    @NotEmpty
     private String searchString;
     @NotNull
     private String filterString;

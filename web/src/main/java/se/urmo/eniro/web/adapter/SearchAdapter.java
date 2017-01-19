@@ -6,12 +6,13 @@ import se.urmo.eniro.app.service.SearchService;
 import se.urmo.eniro.web.model.SearchForm;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import static org.apache.commons.lang3.Validate.notNull;
 
 @Service
 public class SearchAdapter {
+    private static final String SEPARATOR = ",";
     private final SearchService searchService;
 
     @Autowired
@@ -19,9 +20,12 @@ public class SearchAdapter {
         this.searchService = notNull(searchService);
     }
 
-    public void search(SearchForm searchForm) {
-        System.out.println(searchForm.getSearchString());
-        List<String> searchWord = Arrays.asList("pizza");
-        searchService.search(searchWord);
+    public Map<String, String> search(SearchForm searchForm) {
+        notNull(searchForm);
+        notNull(searchForm.getFilterString());
+        notNull(searchForm.getSearchString());
+
+        String[] searchWords = searchForm.getSearchString().trim().split(SEPARATOR);
+        return searchService.filteredSearch(Arrays.asList(searchWords), searchForm.getFilterString());
     }
 }

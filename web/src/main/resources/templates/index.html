@@ -11,11 +11,13 @@
         <div style="display: inline-block;">
             <div style="float:left;margin-right:20px;">
                 <label style="display: block" for="filterString">Filter</label>
-                <input style="display: block" id="filterString" type="text" name="filterString"/>
+                <input style="display: block" id="filterString" type="text" name="filterString"
+                       th:field="*{searchForm.filterString}"/>
             </div>
             <div style="float:left;">
                 <label style="display: block" for="searchString">Search</label>
-                <input style="display: block" id="searchString" type="text" name="searchString"/>
+                <input style="display: block" id="searchString" type="text" name="searchString"
+                       th:field="*{searchForm.searchString}"/>
             </div>
         </div>
         <br style="clear:both;"/>
@@ -23,12 +25,15 @@
 
     </section>
 </form>
-<span th:if="${searchstring} != null"><h2>Result for: <i><span th:text="${searchstring}"></span></i><span
-        th:if="${filterstring} != null"> with filter <i><span th:text="${filterstring}"></span></i></span></h2></span>
+<span th:if="${searchForm.searchString} != null"><h2>Result for: '<i><span th:text="${searchForm.searchString}"></span></i>'<span
+        th:if="${searchForm.filterString} != null"> with filter: '<i><span th:text="${searchForm.filterString}"></span></i></span>'</h2></span>
 <ul th:if="${searchresult} != null">
     <li th:each="result : ${searchresult}">
         <a th:href="@{${result.value}}" th:text="${result.key}"></a>
     </li>
 </ul>
+<div th:if="${#lists.isEmpty(searchresult)}">
+    Not found.
+</div>
 </body>
 </html>
